@@ -1,0 +1,23 @@
+/* Grid */
+.row {
+    --gutter-x: 8px;
+    --gutter-y: 8px;
+
+    display: flex;
+
+    //Hack para el espaciado vertical
+    &+.row {
+        margin-top: var(--gutter-y);
+    }
+}
+
+.col {
+    flex: 1 0 0%;
+    padding-inline: calc(var(--gutter-x)/2);
+}
+
+.col-auto {
+    flex: 0 0 auto;
+    width: auto;
+    padding-inline: calc(var(--gutter-x)/2);
+}
