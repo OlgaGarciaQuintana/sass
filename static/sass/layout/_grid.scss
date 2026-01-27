@@ -6,7 +6,7 @@
     display: flex;
 
     //Hack para el espaciado vertical
-    &+.row {
+    & + .row {
         margin-top: var(--gutter-y);
     }
 }
