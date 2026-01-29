@@ -1,12 +1,23 @@
-/* Tipografía */
-@use "sass:list";
-@use 'base/variables';
+/* Tipografía extra*/
+@use 'sass:list';
+@use 'sass:map';
+
 $font-sizes: 0.875rem, 1rem, 1.25rem, 1.5rem, 2rem;
 
-@each $size in $font-sizes {
-  $index: list.index($font-sizes, $size);
+$breakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
 
-  .fs-#{$index} {
-    font-size: $size;
-  }
+@each $breakname, $breakvalue in $breakpoints {
+    $otherindex: list.index(map.keys($breakpoints), $breakname);
+    @each $size in $font-sizes {
+        $index: list.index($font-sizes, $size);
+        .fs-#{$breakname}-#{$index} {
+            font-size: $size;
+            breakpoints: $breakvalue;
+        }
+    }
 }
