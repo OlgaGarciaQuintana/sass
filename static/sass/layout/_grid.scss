@@ -8,7 +8,6 @@
     --gutter-y: 8px;
     display: flex;
 
-    // Hack para el espaciado vertical
     &+.row {
         margin-top: var(--gutter-y);
     }
@@ -38,7 +37,7 @@ $gutters: 0px, 8px, 16px, 32px, 64px, 128px;
 
 @for $i from 1 through list.length($gutters) {
     $value: list.nth($gutters, $i);
-    $idx: $i - 1; // índice base 0 para las clases (.gx-0 .. .gx-5)
+    $idx: $i - 1;
 
     .gx-#{$idx} {
         --gutter-x: #{$value};
