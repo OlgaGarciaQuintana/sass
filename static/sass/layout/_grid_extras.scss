@@ -45,3 +45,30 @@ $breakpoints: (
 @each $bp, $size in $breakpoints {
   @include make-columns($bp, $size);
 }
+
+$gutter-sizes: (
+  1: 8px,
+  2: 16px,
+  3: 32px,
+  4: 64px,
+  5: 128px
+);
+
+@each $bp, $min-width in $breakpoints {
+  @media (min-width: $min-width) {
+
+    @each $num, $size in $gutter-sizes {
+      .gx-#{$bp}-#{$num} {
+        --gutter-x: #{$size};
+      }
+    }
+
+    @each $num, $size in $gutter-sizes {
+      .gy-#{$bp}-#{$num} {
+        --gutter-y: #{$size};
+      }
+    }
+
+  }
+}
+
