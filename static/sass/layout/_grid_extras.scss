@@ -4,7 +4,7 @@ $breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 .container {
@@ -41,7 +41,6 @@ $breakpoints: (
   }
 }
 
-
 @each $bp, $size in $breakpoints {
   @include make-columns($bp, $size);
 }
@@ -51,12 +50,11 @@ $gutter-sizes: (
   2: 16px,
   3: 32px,
   4: 64px,
-  5: 128px
+  5: 128px,
 );
 
 @each $bp, $min-width in $breakpoints {
   @media (min-width: $min-width) {
-
     @each $num, $size in $gutter-sizes {
       .gx-#{$bp}-#{$num} {
         --gutter-x: #{$size};
@@ -68,7 +66,44 @@ $gutter-sizes: (
         --gutter-y: #{$size};
       }
     }
-
   }
 }
 
+$generate-responsive-classes: true !default;
+
+@if $generate-responsive-classes {
+  @each $bp, $size in $breakpoints {
+    @include make-columns($bp, $size);
+  }
+
+  @each $bp, $min-width in $breakpoints {
+    @media (min-width: $min-width) {
+      @each $num, $size in $gutter-sizes {
+        .gx-#{$bp}-#{$num} {
+          --gutter-x: #{$size};
+        }
+        .gy-#{$bp}-#{$num} {
+          --gutter-y: #{$size};
+        }
+      }
+    }
+  }
+
+  $fs-sizes: (
+    1: 0.75rem,
+    2: 1rem,
+    3: 1.25rem,
+    4: 1.5rem,
+    5: 2rem,
+  );
+
+  @each $bp, $min-width in $breakpoints {
+    @media (min-width: $min-width) {
+      @each $num, $size in $fs-sizes {
+        .fs-#{$bp}-#{$num} {
+          font-size: $size;
+        }
+      }
+    }
+  }
+}
