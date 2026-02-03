@@ -1,0 +1,32 @@
+$columns: 12;
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[class^="col-"] {
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+@mixin make-columns($breakpoint, $min-width) {
+  @media (min-width: $min-width) {
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        width: percentage($i / $columns);
+      }
+    }
+  }
+}
+
+@each $bp, $size in $breakpoints {
+  @include make-columns($bp, $size);
+}
