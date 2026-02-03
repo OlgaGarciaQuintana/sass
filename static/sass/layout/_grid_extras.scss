@@ -7,6 +7,12 @@ $breakpoints: (
   xl: 1200px
 );
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -15,6 +21,14 @@ $breakpoints: (
 [class^="col-"] {
   box-sizing: border-box;
   padding: 1rem;
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 @mixin make-columns($breakpoint, $min-width) {
@@ -26,6 +40,7 @@ $breakpoints: (
     }
   }
 }
+
 
 @each $bp, $size in $breakpoints {
   @include make-columns($bp, $size);
